@@ -20,7 +20,8 @@ namespace ZombiesMinigame
         // Update is called once per frame
         void Update()
         {
-            agent.SetDestination(player.position);
+            if(agent.enabled)
+                agent.SetDestination(player.position);
         }
     }
 }

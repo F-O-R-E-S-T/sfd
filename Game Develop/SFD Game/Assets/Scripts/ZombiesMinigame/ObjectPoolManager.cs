@@ -8,9 +8,9 @@ namespace ZombiesMinigame
         [System.Serializable]
         public class Pool
         {
-            public string tag;
-            public GameObject prefab;
-            public int size;
+            public string Tag;
+            public GameObject Prefab;
+            public int Size;
         }
 
         public static ObjectPoolManager Instance;
@@ -20,43 +20,43 @@ namespace ZombiesMinigame
             Instance = this;
         }
 
-        public List<Pool> pools;
-        public Dictionary<string, Queue<GameObject>> poolDictionary;
+        public List<Pool> Pools;
+        public Dictionary<string, Queue<GameObject>> PoolDictionary;
 
         void Start()
         {
-            poolDictionary = new Dictionary<string, Queue<GameObject>>();
+            PoolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-            foreach (Pool pool in pools)
+            foreach (Pool pool in Pools)
             {
                 Queue<GameObject> objectPool = new Queue<GameObject>();
 
-                for (int i = 0; i < pool.size; i++)
+                for (int i = 0; i < pool.Size; i++)
                 {
-                    GameObject obj = Instantiate(pool.prefab);
+                    GameObject obj = Instantiate(pool.Prefab);
                     obj.SetActive(false);
                     objectPool.Enqueue(obj);
                 }
 
-                poolDictionary.Add(pool.tag, objectPool);
+                PoolDictionary.Add(pool.Tag, objectPool);
             }
         }
 
         public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
         {
-            if (!poolDictionary.ContainsKey(tag))
+            if (!PoolDictionary.ContainsKey(tag))
             {
                 Debug.LogWarning("Pool with tag " + tag + " doesn't exist.");
                 return null;
             }
 
-            GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+            GameObject objectToSpawn = PoolDictionary[tag].Dequeue();
 
             objectToSpawn.SetActive(true);
             objectToSpawn.transform.position = position;
             objectToSpawn.transform.rotation = rotation;
 
-            poolDictionary[tag].Enqueue(objectToSpawn);
+            PoolDictionary[tag].Enqueue(objectToSpawn);
 
             return objectToSpawn;
         }
