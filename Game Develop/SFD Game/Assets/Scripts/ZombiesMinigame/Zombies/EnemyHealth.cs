@@ -24,7 +24,7 @@ namespace ZombiesMinigame
             }
         }
 
-        void Die()
+        public void Die()
         {
             // Aquí puedes agregar efectos de muerte, animaciones, etc.
             gameObject.SetActive(false); // Desactiva el enemigo

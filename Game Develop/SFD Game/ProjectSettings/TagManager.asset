@@ -13,7 +13,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -42,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 2415586751
     locked: 0
