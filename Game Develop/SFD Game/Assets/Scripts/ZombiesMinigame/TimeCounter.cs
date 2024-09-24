@@ -6,10 +6,20 @@ public class TimeCounter : MonoBehaviour
     public TextMeshProUGUI timeText;  // Referencia al objeto de texto TextMeshPro
     private float elapsedTime = 0f;  // Tiempo transcurrido
 
+    [SerializeField] private GameObject _habilityPanel;
+
+    private float nextTimeToActivatePanel = 60f;
+
     void Update()
     {
         elapsedTime += Time.deltaTime;
         UpdateTimeText();
+
+        if (elapsedTime >= nextTimeToActivatePanel)
+        {
+            _habilityPanel.SetActive(true);
+            nextTimeToActivatePanel += 60f;  // Incrementar para esperar otro minuto
+        }
     }
 
     void UpdateTimeText()

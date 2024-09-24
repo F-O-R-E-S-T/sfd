@@ -9,6 +9,8 @@ namespace ZombiesMinigame
         [SerializeField] private float _currentLife;
         [SerializeField] private float _maxLife;
         [SerializeField] private ShockwaveManager shockwaveManager;
+        [SerializeField] private ScreenVibration _screenVibration;
+
 
         public float CurrentLife { get => _currentLife; }
 
@@ -39,6 +41,8 @@ namespace ZombiesMinigame
                 _currentLife -= damageReceived;
                 _currentLife = Mathf.Clamp(_currentLife, 0, _maxLife);
                 playerHealthUI.UpdateHealthUI(_currentLife);
+
+                _screenVibration.VibrateScreen();
             }
         }
 

@@ -11,11 +11,13 @@ namespace ZombiesMinigame
 
         private Rigidbody rb;
         private Transform player;
+        private PlayerStats _playerStats;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             player = FindObjectOfType<PlayerController>().transform;
+            _playerStats = player.GetComponent<PlayerStats>();
         }
 
         private void OnEnable()
@@ -44,7 +46,7 @@ namespace ZombiesMinigame
                 EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.TakeDamage(damage);
+                    enemyHealth.TakeDamage(_playerStats.Damage);
                 }
                 gameObject.SetActive(false); // Desactiva la bala
             }

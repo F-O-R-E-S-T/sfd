@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\ZombiesMinigame\Camera\MoveCamera.cs" />
     <Compile Include="Assets\Scripts\Lobby\TriggerHandler.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Zombies\EnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\Player\Orb.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\SpawnOnHold.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Bullet\Bullet.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
@@ -70,15 +71,21 @@
     <Compile Include="Assets\Scripts\ZombiesMinigame\Zombies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Main Menu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Bullet\LookAtCamera.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\UI\PauseManager.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\LookAtMouse.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\Player\CreateOrbs.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Zombies\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Zombies\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\TimeCounter.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\PlayerHealthUI.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\ShockwaveManager.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\UI\WeaponSelectorUI.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\UI\PlayerStatsUI.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\Camera\ScreenVibration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -11,9 +11,12 @@ namespace ZombiesMinigame
 
         private Rigidbody _rb;
 
+        private PlayerStats _playerStats;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            _playerStats = GetComponent<PlayerStats>();
         }
 
 
@@ -24,7 +27,7 @@ namespace ZombiesMinigame
 
             Vector3 direction = new Vector3(moveX, 0, moveZ);
 
-            _rb.velocity = direction.normalized * speed;
+            _rb.velocity = direction.normalized * _playerStats.MoveSpeed;
         }
     }
 }
