@@ -13,6 +13,14 @@ namespace ZombiesMinigame
 
         private PlayerStats _playerStats;
 
+        public enum FloorType
+        {
+            Dirt,
+            Concrete
+        }
+
+        public FloorType floorType = FloorType.Concrete;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
@@ -28,6 +36,20 @@ namespace ZombiesMinigame
             Vector3 direction = new Vector3(moveX, 0, moveZ);
 
             _rb.velocity = direction.normalized * _playerStats.MoveSpeed;
+
+            if(direction.magnitude > 0)
+            {
+                if(floorType == FloorType.Dirt)
+                {
+                    if(!AudioManager.Instance.PlayerFootstepsDirtAudioSource.isPlaying)
+                        AudioManager.Instance.PlayerFootstepsDirtAudioSource.Play();
+                }
+                else
+                {
+                    if (!AudioManager.Instance.PlayerFootstepsConcreteAudioSource.isPlaying)
+                        AudioManager.Instance.PlayerFootstepsConcreteAudioSource.Play();
+                }
+            }
         }
     }
 }

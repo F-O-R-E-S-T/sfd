@@ -9,6 +9,8 @@ namespace ZombiesMinigame
         public float maxHealth = 100f; // Vida máxima del enemigo
         private float currentHealth;
 
+        [SerializeField] private ParticleSystem _hurtParticle;
+
         void Start()
         {
             currentHealth = maxHealth; // Iniciar con vida máxima
@@ -17,6 +19,8 @@ namespace ZombiesMinigame
         public void TakeDamage(float amount)
         {
             currentHealth -= amount;
+            _hurtParticle.Play();
+            AudioManager.Instance.EnemyHurtAudioSource.Play();
 
             if (currentHealth <= 0)
             {

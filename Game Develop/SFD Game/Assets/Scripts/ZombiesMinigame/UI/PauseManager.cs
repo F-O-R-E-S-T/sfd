@@ -40,4 +40,9 @@ public class PauseManager : MonoBehaviour
             yield return null; // Espera hasta el siguiente frame
         }
     }
+
+    public void SetExecutionTime(float time)
+    {
+        Time.timeScale = time;
+    }
 }

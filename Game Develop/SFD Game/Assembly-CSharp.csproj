@@ -74,16 +74,20 @@
     <Compile Include="Assets\Scripts\ZombiesMinigame\UI\PauseManager.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\LookAtMouse.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\CreateOrbs.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\Sounds\AudioManager.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Zombies\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\UI\StatButton.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Zombies\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\UI\StatsUI.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\TimeCounter.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\PlayerHealthUI.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\ShockwaveManager.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\UI\WeaponSelectorUI.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\UI\StatSelectorUI.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\UI\PlayerStatsUI.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Camera\ScreenVibration.cs" />
   </ItemGroup>

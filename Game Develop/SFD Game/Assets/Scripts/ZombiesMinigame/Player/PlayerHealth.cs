@@ -8,7 +8,8 @@ namespace ZombiesMinigame
     {
         [SerializeField] private float _currentLife;
         [SerializeField] private float _maxLife;
-        [SerializeField] private ShockwaveManager shockwaveManager;
+        [SerializeField] private ParticleSystem _shockwaveParticle;
+        [SerializeField] private ParticleSystem _hurtParticle;
         [SerializeField] private ScreenVibration _screenVibration;
 
 
@@ -22,21 +23,42 @@ namespace ZombiesMinigame
         public float damageReceived = 20f;
 
         public PlayerHealthUI playerHealthUI;
+        public GameObject GameOverPanel;
+
+        [SerializeField] private PlayerController _playerController;
+        [SerializeField] private SpawnOnHold _spawnOnHold;
+        [SerializeField] private CreateOrbs _createOrbs;
+        [SerializeField] private LookAtMouse _lookAtMouse;
 
         private void Awake()
         {
             _currentLife = _maxLife;
         }
 
+        private void Update()
+        {
+            if(_currentLife <= 0 && !GameOverPanel.activeInHierarchy)
+            {
+                GameOverPanel.SetActive(true);
+                _playerController.enabled = false;
+                _spawnOnHold.enabled = false;
+                _lookAtMouse.enabled = false;
+                AudioManager.Instance.PlayerDieAudioSource.Play();
+                Time.timeScale = 0;
+                this.enabled = false;
+
+            }
+        }
+
         void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                //TODO: Dar invulnerabilidad al jugador?
-                //TODO: Ejecutar shader o particulas de onda de impulso
                 KillEnemies();
-                shockwaveManager.CallShockWave();
+                _shockwaveParticle.Play();
+                _hurtParticle.Play();
                 PushEnemiesBack();
+                AudioManager.Instance.PlayerHurtAudioSource.Play();
 
                 _currentLife -= damageReceived;
                 _currentLife = Mathf.Clamp(_currentLife, 0, _maxLife);

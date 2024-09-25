@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeCounter : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class TimeCounter : MonoBehaviour
             _habilityPanel.SetActive(true);
             nextTimeToActivatePanel += 60f;  // Incrementar para esperar otro minuto
         }
+    }
+
+    public void SceneLoading(string sceneToLoad)
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     void UpdateTimeText()

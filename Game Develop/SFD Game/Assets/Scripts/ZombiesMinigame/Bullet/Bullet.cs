@@ -27,6 +27,7 @@ namespace ZombiesMinigame
             {
                 rb.velocity = Vector3.zero; // Reset velocity
                 rb.AddForce(-player.right * forceAmount, ForceMode.Impulse);
+                AudioManager.Instance.PlayerShootAudioSource.Play();
             }
 
             // Desactiva la bala después de un tiempo para reutilizarla
