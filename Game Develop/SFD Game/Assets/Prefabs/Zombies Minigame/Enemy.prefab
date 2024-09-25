@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   _hurtParticle: {fileID: 1082541320243768721}
+  _floatingTextPrefab: {fileID: 558721806919815813, guid: 67db96ded62dcae458e246765c3d9e66,
+    type: 3}
 --- !u!54 &1707924622502431764
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,8 +11,8 @@ public class PlayerStatsUI : MonoBehaviour
 
     private void Update()
     {
-        _damageText.text = "Damage = " + playerStats.Damage;
-        _moveSpeedText.text = "Move Speed = " + playerStats.MoveSpeed;
-        _attackSpeedText.text = "Attack Speed = " + playerStats.AttackSpeed;
+        _damageText.text = "Damage = " + Mathf.Ceil(playerStats.Damage);
+        _moveSpeedText.text = "Move Speed = " + Mathf.Ceil(playerStats.MoveSpeed);
+        _attackSpeedText.text = "Attack Speed = " + Mathf.Ceil(playerStats.AttackSpeed);
     }
 }
