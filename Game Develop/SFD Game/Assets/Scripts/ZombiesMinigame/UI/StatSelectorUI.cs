@@ -38,7 +38,7 @@ public class StatSelectorUI : MonoBehaviour
     {
         foreach (var button in _instantiatedButtons)
         {
-            Destroy(button); // Destruir cada botón instanciado
+            Destroy(button);
         }
 
         _instantiatedButtons.Clear();

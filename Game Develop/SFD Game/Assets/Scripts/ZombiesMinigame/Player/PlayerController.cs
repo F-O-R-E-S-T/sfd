@@ -6,8 +6,8 @@ namespace ZombiesMinigame
 {
     public class PlayerController : MonoBehaviour
     {
-        public float speed = 6.0f;        // Velocidad de movimiento del personaje
-        public float gravity = -9.8f;     // Gravedad aplicada al personaje
+        [SerializeField] private float _speed = 6.0f;
+        [SerializeField] private float _gravity = -9.8f;
 
         private Rigidbody _rb;
 
@@ -37,7 +37,7 @@ namespace ZombiesMinigame
 
             _rb.velocity = direction.normalized * _playerStats.MoveSpeed;
 
-            if(direction.magnitude > 0)
+            if(direction.magnitude > 0 && AudioManager.Instance != null)
             {
                 if(floorType == FloorType.Dirt)
                 {

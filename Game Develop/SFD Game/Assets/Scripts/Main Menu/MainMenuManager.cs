@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +6,21 @@ public class MainMenuManager : MonoBehaviour
 {
     public void LoadGame()
     {
-        SceneManager.LoadScene("Lobby");
+        StartCoroutine(LoadLobbyAsync());
+    }
+
+    private IEnumerator LoadLobbyAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Lobby");
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    public void CloseApp()
+    {
+        Application.Quit();
     }
 }

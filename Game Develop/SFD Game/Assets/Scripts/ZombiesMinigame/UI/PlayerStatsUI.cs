@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerStatsUI : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerStats _playerStats;
 
     [SerializeField] private TextMeshProUGUI _damageText;
     [SerializeField] private TextMeshProUGUI _moveSpeedText;
@@ -11,8 +11,8 @@ public class PlayerStatsUI : MonoBehaviour
 
     private void Update()
     {
-        _damageText.text = "Damage = " + Mathf.Ceil(playerStats.Damage);
-        _moveSpeedText.text = "Move Speed = " + Mathf.Ceil(playerStats.MoveSpeed);
-        _attackSpeedText.text = "Attack Speed = " + Mathf.Ceil(playerStats.AttackSpeed);
+        _damageText.text = "Damage = " + Mathf.Ceil(_playerStats.Damage);
+        _moveSpeedText.text = "Move Speed = " + Mathf.Ceil(_playerStats.MoveSpeed);
+        _attackSpeedText.text = "Attack Speed = " + Mathf.Ceil(_playerStats.AttackSpeed);
     }
 }

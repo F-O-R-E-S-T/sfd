@@ -6,31 +6,30 @@ namespace ZombiesMinigame
 {
     public class Bullet : MonoBehaviour
     {
-        public float forceAmount = 10f;
-        public float damage = 10f; // Daño que hace la bala
+        [SerializeField] private float _forceAmount = 10f;
+        [SerializeField] private float _damage = 10f;
 
-        private Rigidbody rb;
-        private Transform player;
+        private Rigidbody _rb;
+        private Transform _player;
         private PlayerStats _playerStats;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
-            player = FindObjectOfType<PlayerController>().transform;
-            _playerStats = player.GetComponent<PlayerStats>();
+            _rb = GetComponent<Rigidbody>();
+            _player = FindObjectOfType<PlayerController>().transform;
+            _playerStats = _player.GetComponent<PlayerStats>();
         }
 
         private void OnEnable()
         {
             
-            if (rb != null)
+            if (_rb != null)
             {
-                rb.velocity = Vector3.zero; // Reset velocity
-                rb.AddForce(-player.right * forceAmount, ForceMode.Impulse);
+                _rb.velocity = Vector3.zero;
+                _rb.AddForce(-_player.right * _forceAmount, ForceMode.Impulse);
                 AudioManager.Instance.PlayerShootAudioSource.Play();
             }
 
-            // Desactiva la bala después de un tiempo para reutilizarla
             StartCoroutine(DeactivateAfterTime(2f));
         }
 
@@ -49,7 +48,7 @@ namespace ZombiesMinigame
                 {
                     enemyHealth.TakeDamage(_playerStats.Damage);
                 }
-                gameObject.SetActive(false); // Desactiva la bala
+                gameObject.SetActive(false);
             }
         }
     }

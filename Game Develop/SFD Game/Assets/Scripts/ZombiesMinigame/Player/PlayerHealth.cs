@@ -15,15 +15,15 @@ namespace ZombiesMinigame
 
         public float CurrentLife { get => _currentLife; }
 
-        public float pushForce = 10f;
-        public float pushRadius = 10f;
-        public float deathRadius = 3f;
-        public float disableTime = 0.5f;  // Tiempo que se desactiva el NavMeshAgent
+        [SerializeField] private float _pushForce = 10f;
+        [SerializeField] private float _pushRadius = 10f;
+        [SerializeField] private float _deathRadius = 3f;
+        [SerializeField] private float _disableTime = 0.5f;
 
-        public float damageReceived = 20f;
+        [SerializeField] private float _damageReceived = 20f;
 
-        public PlayerHealthUI playerHealthUI;
-        public GameObject GameOverPanel;
+        [SerializeField] private PlayerHealthUI _playerHealthUI;
+        [SerializeField] private GameObject _gameOverPanel;
 
         [SerializeField] private PlayerController _playerController;
         [SerializeField] private SpawnOnHold _spawnOnHold;
@@ -37,9 +37,9 @@ namespace ZombiesMinigame
 
         private void Update()
         {
-            if(_currentLife <= 0 && !GameOverPanel.activeInHierarchy)
+            if(_currentLife <= 0 && !_gameOverPanel.activeInHierarchy)
             {
-                GameOverPanel.SetActive(true);
+                _gameOverPanel.SetActive(true);
                 _playerController.enabled = false;
                 _spawnOnHold.enabled = false;
                 _lookAtMouse.enabled = false;
@@ -60,9 +60,9 @@ namespace ZombiesMinigame
                 PushEnemiesBack();
                 AudioManager.Instance.PlayerHurtAudioSource.Play();
 
-                _currentLife -= damageReceived;
+                _currentLife -= _damageReceived;
                 _currentLife = Mathf.Clamp(_currentLife, 0, _maxLife);
-                playerHealthUI.UpdateHealthUI(_currentLife);
+                _playerHealthUI.UpdateHealthUI(_currentLife);
 
                 _screenVibration.VibrateScreen();
             }
@@ -70,7 +70,7 @@ namespace ZombiesMinigame
 
         void KillEnemies()
         {
-            Collider[] enemies = Physics.OverlapSphere(transform.position, deathRadius);
+            Collider[] enemies = Physics.OverlapSphere(transform.position, _deathRadius);
 
             foreach (Collider enemy in enemies)
             {
@@ -83,7 +83,7 @@ namespace ZombiesMinigame
 
         void PushEnemiesBack()
         {
-            Collider[] enemies = Physics.OverlapSphere(transform.position, pushRadius);
+            Collider[] enemies = Physics.OverlapSphere(transform.position, _pushRadius);
 
             foreach (Collider enemy in enemies)
             {
@@ -94,13 +94,10 @@ namespace ZombiesMinigame
 
                     if (agent != null && rb != null)
                     {
-                        // Desactiva el NavMeshAgent
                         agent.enabled = false;
-                        // Aplica la fuerza
                         Vector3 direction = (enemy.transform.position - transform.position).normalized;
-                        rb.AddForce(direction * pushForce, ForceMode.Impulse);
-                        // Reactiva el NavMeshAgent después de un tiempo
-                        StartCoroutine(EnableNavMeshAgent(agent, disableTime));
+                        rb.AddForce(direction * _pushForce, ForceMode.Impulse);
+                        StartCoroutine(EnableNavMeshAgent(agent, _disableTime));
 
                     }
                 }

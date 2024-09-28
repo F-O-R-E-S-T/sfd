@@ -20,24 +20,19 @@ public class PauseManager : MonoBehaviour
         _configurationButton.onClick.AddListener(() => _configurationPanel.SetActive(true));
     }
 
-    // Método público para iniciar la carga asíncrona de la escena
     public void LoadSceneAsync(string sceneName)
     {
         StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
-    // Corrutina que se encarga de cargar la escena de forma asíncrona
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        // Inicia la carga asíncrona de la escena
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
-        // Espera hasta que la carga esté completa
         while (!asyncLoad.isDone)
         {
-            // Aquí puedes actualizar una barra de carga o mostrar el progreso de alguna manera
             Debug.Log("Progreso de la carga: " + (asyncLoad.progress * 100) + "%");
-            yield return null; // Espera hasta el siguiente frame
+            yield return null;
         }
     }
 

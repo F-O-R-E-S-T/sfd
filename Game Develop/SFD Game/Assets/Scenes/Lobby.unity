@@ -11634,7 +11634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1778079504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13145,7 +13145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToToggle: {fileID: 1571371037}
-  sceneToLoad: SampleScene
+  sceneToLoad: 1. ZombiesGame
 --- !u!136 &2116841951
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13466,6 +13466,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6442798977772578497, guid: 724c3520b9a335f42ab27549caac1928,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6688522942169624239, guid: 724c3520b9a335f42ab27549caac1928,
         type: 3}
       propertyPath: m_IsActive
@@ -13496,7 +13501,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1332344963240255495, guid: 724c3520b9a335f42ab27549caac1928, type: 3}
+    - {fileID: 5892873803620374138, guid: 724c3520b9a335f42ab27549caac1928, type: 3}
+    - {fileID: 3307356277552907056, guid: 724c3520b9a335f42ab27549caac1928, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2052927644113588841, guid: 724c3520b9a335f42ab27549caac1928,

@@ -6,16 +6,16 @@ namespace ZombiesMinigame
 {
     public class SpawnOnHold : MonoBehaviour
     {
-        public string bulletTag; // El tag del objeto a instanciar
-        public GameObject objectToSpawn; // El objeto a instanciar
-        public Transform spawnPoint; // El punto de spawn
-        public float spawnDelay = 1f; // Retardo en segundos entre instanciaciones
-        public float forceAmount = 10f; // Fuerza a aplicar
-        public float MaximumAttackSpeed = 2;
+        [SerializeField] private string _bulletTag;
+        [SerializeField] private GameObject _objectToSpawn;
+        [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private float _spawnDelay = 1f;
+        [SerializeField] private float _forceAmount = 10f;
+        [SerializeField] private float _maximumAttackSpeed = 2;
 
-        private bool isSpawning = false; // Para controlar si se está instanciando
-        private float nextSpawnTime; // Para controlar el tiempo de la próxima instanciación
-        private Coroutine spawnCoroutine; // Para controlar la corrutina de spawn
+        [SerializeField] private bool _isSpawning = false;
+        [SerializeField] private float _nextSpawnTime;
+        [SerializeField] private Coroutine _spawnCoroutine;
 
         private PlayerStats _playerStats;
 
@@ -28,41 +28,28 @@ namespace ZombiesMinigame
         {
             if (Input.GetMouseButton(0))
             {
-                // Comienza a instanciar cuando se mantiene presionado el botón izquierdo del mouse
-                if (!isSpawning)
+                if (!_isSpawning)
                 {
-                    isSpawning = true;
-                    spawnCoroutine = StartCoroutine(SpawnRoutine());
+                    _isSpawning = true;
+                    _spawnCoroutine = StartCoroutine(SpawnRoutine());
                 }
             }
             else
             {
-                // Deja de instanciar cuando se suelta el botón izquierdo del mouse
-                if (isSpawning)
+                if (_isSpawning)
                 {
-                    isSpawning = false;
-                    StopCoroutine(spawnCoroutine);
+                    _isSpawning = false;
+                    StopCoroutine(_spawnCoroutine);
                 }
             }
         }
 
         private IEnumerator SpawnRoutine()
         {
-            // Instanciar el objeto en el punto de spawn
-            //GameObject spawnedObject = Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
-
-            // Aplicar una fuerza al objeto instanciado
-            //Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
-            //if (rb != null)
-            //{
-                //rb.AddForce(-spawnedObject.transform.up * forceAmount, ForceMode.Impulse);
-            //}
-
-            ObjectPoolManager.Instance.SpawnFromPool(bulletTag, spawnPoint.position, spawnPoint.rotation);
-            // Esperar el tiempo de retardo antes de la próxima instanciación
-            float timeToWait = Mathf.Clamp(MaximumAttackSpeed - _playerStats.AttackSpeed, 1, MaximumAttackSpeed);
+            ObjectPoolManager.Instance.SpawnFromPool(_bulletTag, _spawnPoint.position, _spawnPoint.rotation);
+            float timeToWait = Mathf.Clamp(_maximumAttackSpeed - _playerStats.AttackSpeed, 1, _maximumAttackSpeed);
             yield return new WaitForSeconds(timeToWait);
-            isSpawning = false;
+            _isSpawning = false;
         }
     }
 }

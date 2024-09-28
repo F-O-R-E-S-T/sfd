@@ -2,45 +2,44 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;  // Prefab del enemigo
-    public float spawnInterval = 3f;  // Intervalo de tiempo inicial entre spawns
-    public float minSpawnInterval = 0.5f;  // Intervalo de tiempo mínimo entre spawns
-    public float decreaseRate = 0.01f;  // Tasa de disminución del intervalo de tiempo por segundo
-    public Transform[] spawnPoints;  // Puntos de generación de enemigos
+    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private float _spawnInterval = 3f;
+    [SerializeField] private float _minSpawnInterval = 0.5f;
+    [SerializeField] private float _decreaseRate = 0.01f;
+    [SerializeField] private Transform[] _spawnPoints;
 
-    private float timer;
+    private float _timer;
 
     void Start()
     {
-        timer = spawnInterval;
+        _timer = _spawnInterval;
     }
 
     void Update()
     {
-        timer -= Time.deltaTime;
+        _timer -= Time.deltaTime;
 
-        if (timer <= 0)
+        if (_timer <= 0)
         {
             SpawnEnemy();
-            timer = spawnInterval;
+            _timer = _spawnInterval;
         }
 
-        // Reducir el intervalo de spawn progresivamente
-        if (spawnInterval > minSpawnInterval)
+        if (_spawnInterval > _minSpawnInterval)
         {
-            spawnInterval -= decreaseRate * Time.deltaTime;
-            if (spawnInterval < minSpawnInterval)
+            _spawnInterval -= _decreaseRate * Time.deltaTime;
+            if (_spawnInterval < _minSpawnInterval)
             {
-                spawnInterval = minSpawnInterval;
+                _spawnInterval = _minSpawnInterval;
             }
         }
     }
 
     void SpawnEnemy()
     {
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
-        Transform spawnPoint = spawnPoints[spawnIndex];
+        int spawnIndex = Random.Range(0, _spawnPoints.Length);
+        Transform spawnPoint = _spawnPoints[spawnIndex];
 
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }
