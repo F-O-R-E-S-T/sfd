@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\SpawnOnHold.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\AreaDetection.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\Camera\DisableByCollision.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Zombies\EnemySpawner.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\UI\StatsUI.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\TimeCounter.cs" />
+    <Compile Include="Assets\Scripts\ZombiesMinigame\FollowAt.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\PlayerHealthUI.cs" />
     <Compile Include="Assets\Scripts\ZombiesMinigame\ShockwaveManager.cs" />

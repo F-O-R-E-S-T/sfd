@@ -8623,7 +8623,7 @@ GameObject:
   - component: {fileID: 2062509575}
   - component: {fileID: 2062509574}
   - component: {fileID: 2062509573}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8942,8 +8942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b89df606f22da4eb224b5a9e1c7e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectToToggle: {fileID: 0}
-  _sceneToLoad: 
+  _objectToToggle: {fileID: 1571371037}
+  _sceneToLoad: 1. ZombiesGame
 --- !u!136 &2116841951
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9169,6 +9169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420201990834872689, guid: 724c3520b9a335f42ab27549caac1928,
+        type: 3}
+      propertyPath: floorLayer.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4684160516439008194, guid: 724c3520b9a335f42ab27549caac1928,
         type: 3}

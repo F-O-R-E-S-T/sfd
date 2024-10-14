@@ -90,14 +90,16 @@ namespace ZombiesMinigame
                 if (enemy.CompareTag("Enemy"))
                 {
                     NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
+                    EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                     Rigidbody rb = enemy.GetComponent<Rigidbody>();
 
                     if (agent != null && rb != null)
                     {
+                        enemyMovement.enabled = false;
                         agent.enabled = false;
                         Vector3 direction = (enemy.transform.position - transform.position).normalized;
                         rb.AddForce(direction * _pushForce, ForceMode.Impulse);
-                        StartCoroutine(EnableNavMeshAgent(agent, _disableTime));
+                        StartCoroutine(EnableNavMeshAgent(agent, _disableTime, enemyMovement, rb));
 
                     }
                 }
@@ -105,9 +107,12 @@ namespace ZombiesMinigame
 
         }
 
-        IEnumerator EnableNavMeshAgent(NavMeshAgent agent, float delay)
+        IEnumerator EnableNavMeshAgent(NavMeshAgent agent, float delay, EnemyMovement enemyMovement, Rigidbody rb)
         {
             yield return new WaitForSeconds(delay);
+
+            rb.velocity = Vector3.zero;
+            enemyMovement.enabled = true;
             agent.enabled = true;
         }
     }
