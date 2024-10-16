@@ -1,18 +1,19 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TriggerHandler : MonoBehaviour
 {
-    public GameObject objectToToggle;  // Objeto que aparecerá y desaparecerá
-    public string sceneToLoad;  // Nombre de la escena que se cargará
-    private bool isPlayerInside = false;  // Bandera para verificar si el jugador está dentro del trigger
+    [SerializeField] private GameObject _objectToToggle;
+    [SerializeField] private string _sceneToLoad;
+    private bool _isPlayerInside = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            objectToToggle.SetActive(true);
-            isPlayerInside = true;
+            _objectToToggle.SetActive(true);
+            _isPlayerInside = true;
         }
     }
 
@@ -20,16 +21,31 @@ public class TriggerHandler : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            objectToToggle.SetActive(false);
-            isPlayerInside = false;
+            _objectToToggle.SetActive(false);
+            _isPlayerInside = false;
         }
     }
 
     void Update()
     {
-        if (isPlayerInside && Input.GetKeyDown(KeyCode.Space))
+        if (_isPlayerInside && Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            LoadGame(_sceneToLoad);
+        }
+    }
+
+    public void LoadGame(string sceneToLoad)
+    {
+        StartCoroutine(LoadLobbyAsync(sceneToLoad));
+    }
+
+    private IEnumerator LoadLobbyAsync(string sceneToLoad)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
         }
     }
 }

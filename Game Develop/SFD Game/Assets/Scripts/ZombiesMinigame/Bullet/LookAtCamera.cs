@@ -6,21 +6,18 @@ namespace ZombiesMinigame
 {
     public class LookAtCamera : MonoBehaviour
     {
-        private Camera mainCamera;
+        private Camera _mainCamera;
 
         void Start()
         {
-            // Obtener la cámara principal
-            mainCamera = Camera.main;
+            _mainCamera = Camera.main;
         }
 
         void Update()
         {
-            // Asegurarse de que la cámara principal no sea nula
-            if (mainCamera != null)
+            if (_mainCamera != null)
             {
-                // Hacer que el objeto mire a la cámara
-                transform.LookAt(mainCamera.transform);
+                transform.LookAt(_mainCamera.transform);
             }
         }
     }

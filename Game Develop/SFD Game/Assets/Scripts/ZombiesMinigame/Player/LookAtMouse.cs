@@ -6,32 +6,28 @@ namespace ZombiesMinigame
 {
     public class LookAtMouse : MonoBehaviour
     {
-        void Update()
+        [SerializeField] private LayerMask floorLayer;
+
+        void FixedUpdate()
         {
-            // Obtener la posición del mouse en la pantalla
             Vector3 mousePosition = Input.mousePosition;
 
-            // Convertir la posición del mouse a una posición en el mundo
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            Debug.DrawRay(ray.origin, ray.direction*100, Color.red, Mathf.Infinity);
+            if (Physics.Raycast(ray.origin, ray.direction*100, out RaycastHit hit, 60, floorLayer))
             {
-                // Obtener la posición del punto donde el raycast impacta
-                Vector3 targetPosition = hit.point;
+                Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
 
-                // Calcular la dirección hacia el objetivo
                 Vector3 direction = targetPosition - transform.position;
-                direction.y = 0; // Mantener la dirección en el plano XZ
+                direction.y = 0;
 
-                // Rotar el objeto para que mire hacia la dirección del objetivo
                 if (direction != Vector3.zero)
                 {
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-                    // Sumar 90 grados en el eje Y
                     Quaternion additionalRotation = Quaternion.Euler(0, 90, 0);
-                    targetRotation *= additionalRotation;
+                    Quaternion targetRotation = Quaternion.LookRotation(direction) * additionalRotation;
 
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
                 }
             }
         }

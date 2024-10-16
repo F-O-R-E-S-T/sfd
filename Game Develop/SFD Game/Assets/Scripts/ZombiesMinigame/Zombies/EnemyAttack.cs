@@ -6,32 +6,26 @@ using UnityEngine.AI;
 public class EnemyAttack : MonoBehaviour
 {
 
-    private NavMeshAgent agent;
-    public float radiusDetection = 5f;
-    private GameObject player;
+    private NavMeshAgent _agent;
+    [SerializeField] private float _radiusDetection = 5f;
+    private GameObject _player;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        agent = GetComponent<NavMeshAgent>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= radiusDetection)
+        if (Vector3.Distance(transform.position, _player.transform.position) <= _radiusDetection)
         {
-            agent.enabled = false;
+            _agent.enabled = false;
         }
         else
         {
-            agent.enabled = true;
+            _agent.enabled = true;
         }
     }
 }
